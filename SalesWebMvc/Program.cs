@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
 using SalesWebMvc.Models;
+using SalesWebMvc.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SalesWebMvcContext")));
 builder.Services.AddTransient<SeedingService>();
+builder.Services.AddScoped<SellerService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
